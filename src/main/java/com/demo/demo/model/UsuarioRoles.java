@@ -8,7 +8,7 @@ import javax.persistence.Id;
 /**
  * @author alain.menchaca on 20/04/18.
  */
-@Data
+//@Data
 @Entity
 public class UsuarioRoles {
 
@@ -17,4 +17,23 @@ public class UsuarioRoles {
 
     private String role;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    @Override public String toString() {
+        return "UsuarioRoles{" + "name='" + name + '\'' + ", role='" + role + '\'' + '}';
+    }
 }
