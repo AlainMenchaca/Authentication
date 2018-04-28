@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author alain.menchaca on 13/04/18.
@@ -30,4 +31,22 @@ public class LoginController {
         return "login";
     }
 
+
+    @RequestMapping("/restore")
+    public String restore(Model model, @RequestParam(value = "password", defaultValue = "pass") String password,
+        @RequestParam(value = "confirm", defaultValue = "") String confirm,
+        @RequestParam(value = "loaded", defaultValue = "false") Boolean loaded){
+
+        logger.info("pass:"+ password + " confirm:" + confirm + " loaded:" + loaded);
+
+        if(!loaded){
+            return "restorePass";
+        }else if(!password.equals(confirm)){
+            model.addAttribute("restoreError", true);
+            return "restorePass";
+        }
+
+        // TODO update de password in the database
+        return "successRestorePass";
+    }
 }
