@@ -12,5 +12,6 @@ import java.util.List;
 public interface UserRepository extends CrudRepository<Usuario, Long> {
 
     List<Usuario> findByName(String name);
+    List<Usuario> findByTokenAndEnabled(String token, Boolean enable);
 
 }

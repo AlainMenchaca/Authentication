@@ -1,11 +1,19 @@
 package com.demo.demo.controllers;
 
+import com.demo.demo.model.Usuario;
+import com.demo.demo.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+
+import static com.demo.demo.utils.EncrytedPasswordUtils.encrytePassword;
 
 /**
  * @author alain.menchaca on 13/04/18.
@@ -15,13 +23,19 @@ public class LoginController {
 
     private static final Logger logger = LogManager.getLogger(LoginController.class);
 
+    @Autowired
+    UserRepository userRepository;
+
     @RequestMapping({"", "/", "/login"})
     public String login(Model model){
+
+        //TODO delete log levels
         logger.debug("logged in debug");
         logger.info("logged in info");
         logger.warn("logged in warn");
         logger.error("logged in error");
         logger.fatal("logged in fatal");
+
         return "login";
     }
 
@@ -32,12 +46,17 @@ public class LoginController {
     }
 
 
+    @RequestMapping(value = "/restore/{token}")
+    public String restoreName(Model model, @PathVariable String token){
+        model.addAttribute("token", token);
+        return "restorePass";
+    }
+
     @RequestMapping("/restore")
-    public String restore(Model model, @RequestParam(value = "password", defaultValue = "pass") String password,
+    public String restore(Model model, @RequestParam(value = "token", defaultValue = "") String token,
+        @RequestParam(value = "password", defaultValue = "pass") String password,
         @RequestParam(value = "confirm", defaultValue = "") String confirm,
         @RequestParam(value = "loaded", defaultValue = "false") Boolean loaded){
-
-        logger.info("pass:"+ password + " confirm:" + confirm + " loaded:" + loaded);
 
         if(!loaded){
             return "restorePass";
@@ -46,7 +65,10 @@ public class LoginController {
             return "restorePass";
         }
 
-        // TODO update de password in the database
+        List<Usuario> usuario = userRepository.findByTokenAndEnabled(token, Boolean.TRUE);
+        usuario.get(0).setPassword(encrytePassword(password)); // TODO throw exception if more than one user
+        logger.info("New USUARIO:" + usuario);
+        userRepository.save(usuario.get(0));
         return "successRestorePass";
     }
 }

@@ -48,7 +48,8 @@
                                     <div class="form-group">
                                         <input class="form-control" placeholder="CONFIRM-PASSWORD" name="confirm" type="password" value="">
                                     </div>
-                                    <input type="hidden" name="loaded" value="true">
+                                    <input type="hidden" name="loaded" th:value="true">
+                                    <input type="hidden" name="token" th:value="${token}">
                                     <input type="submit" value="UPDATE"/>
                                 </fieldset>
                             </form>

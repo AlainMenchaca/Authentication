@@ -3,6 +3,7 @@ package com.demo.demo.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * @author alain.menchaca on 20/04/18.
@@ -17,6 +18,10 @@ public class Usuario {
     private String password;
 
     private Boolean enabled;
+
+    private String token;
+
+    private Date expiry;
 
     public String getName() {
         return name;
@@ -42,8 +47,24 @@ public class Usuario {
         this.enabled = enabled;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public Date getExpiry() {
+        return expiry;
+    }
+
+    public void setExpiry(Date expiry) {
+        this.expiry = expiry;
+    }
+
     @Override public String toString() {
         return "Usuario{" + "name='" + name + '\'' + ", password='" + password + '\'' + ", enabled="
-            + enabled + '}';
+            + enabled + ", token='" + token + '\'' + ", expiry=" + expiry + '}';
     }
 }
