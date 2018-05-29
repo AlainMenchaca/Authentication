@@ -1,6 +1,6 @@
-package com.demo.demo.controllers;
+package com.demo.sso.controllers;
 
-import com.demo.demo.repository.UserRepository;
+import com.demo.sso.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,6 +1,6 @@
-package com.demo.demo.repository;
+package com.demo.sso.repository;
 
-import com.demo.demo.model.Usuario;
+import com.demo.sso.model.Usuario;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

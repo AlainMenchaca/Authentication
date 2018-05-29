@@ -1,4 +1,4 @@
-package com.demo.demo.configuration;
+package com.demo.sso.configuration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

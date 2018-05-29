@@ -1,4 +1,4 @@
-package com.demo.demo.controllers;
+package com.demo.sso.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

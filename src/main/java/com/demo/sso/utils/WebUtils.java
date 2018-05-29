@@ -1,4 +1,4 @@
-package com.demo.demo.utils;
+package com.demo.sso.utils;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;

@@ -1,9 +1,9 @@
-package com.demo.demo.service.impl;
+package com.demo.sso.service.impl;
 
-import com.demo.demo.model.Usuario;
-import com.demo.demo.model.UsuarioRoles;
-import com.demo.demo.repository.UserRepository;
-import com.demo.demo.repository.UserRolesRepository;
+import com.demo.sso.model.Usuario;
+import com.demo.sso.model.UsuarioRoles;
+import com.demo.sso.repository.UserRepository;
+import com.demo.sso.repository.UserRolesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

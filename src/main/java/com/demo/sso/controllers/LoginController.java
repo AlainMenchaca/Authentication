@@ -1,7 +1,7 @@
-package com.demo.demo.controllers;
+package com.demo.sso.controllers;
 
-import com.demo.demo.model.Usuario;
-import com.demo.demo.repository.UserRepository;
+import com.demo.sso.model.Usuario;
+import com.demo.sso.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-import static com.demo.demo.utils.EncrytedPasswordUtils.encrytePassword;
+import static com.demo.sso.utils.EncrytedPasswordUtils.encrytePassword;
 
 /**
  * @author alain.menchaca on 13/04/18.
@@ -46,6 +46,15 @@ public class LoginController {
     }
 
 
+    /**
+     * This method reads a token for a specific user to hidde  the parameter in the restorePass page
+     * so we can know the user is updating the password.
+     * This method is for email restore functionality.
+     *
+     * @param model
+     * @param token sent to the user's email.
+     * @return
+     */
     @RequestMapping(value = "/restore/{token}")
     public String restoreName(Model model, @PathVariable String token){
         model.addAttribute("token", token);
